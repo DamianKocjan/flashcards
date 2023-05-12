@@ -188,17 +188,9 @@ export const flashcardRouter = createTRPCRouter({
       });
     }
 
-    const user = await getUser(set.ownerId);
-    if (!user) {
-      throw new TRPCError({
-        code: "INTERNAL_SERVER_ERROR",
-        message: "Something went wrong",
-      });
-    }
-
     return {
       ...set,
-      owner: user,
+      owner: (await getUser(set.ownerId))!,
     };
   }),
   update: protectedProcedure

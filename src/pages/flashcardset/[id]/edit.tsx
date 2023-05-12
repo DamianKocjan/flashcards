@@ -1,5 +1,4 @@
 import { buildClerkProps, getAuth } from "@clerk/nextjs/server";
-import { TRPCError } from "@trpc/server";
 import { generateReactHelpers } from "@uploadthing/react/hooks";
 import {
   type GetServerSidePropsContext,
@@ -258,20 +257,7 @@ export const getServerSideProps = async ({
       profileImageUrl: user.profileImageUrl,
     };
   } else {
-    const ownerData = await getUser(set.ownerId);
-    if (!ownerData) {
-      throw new TRPCError({
-        code: "INTERNAL_SERVER_ERROR",
-        message: "Something went wrong",
-      });
-    }
-
-    owner = {
-      username: ownerData.username,
-      firstName: ownerData.firstName,
-      lastName: ownerData.lastName,
-      profileImageUrl: ownerData.profileImageUrl,
-    };
+    owner = (await getUser(set.ownerId))!;
   }
 
   const categories = await prisma.category.findMany({

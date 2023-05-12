@@ -1,4 +1,3 @@
-import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
@@ -59,13 +58,7 @@ export const profileRouter = createTRPCRouter({
         }),
       ]);
 
-      const owner = await getUser(userId);
-      if (!owner) {
-        throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: "Something went wrong",
-        });
-      }
+      const owner = (await getUser(userId))!;
 
       const lastPage = Math.ceil(total / LIMIT);
       const prev = page > 0 ? page - 1 : lastPage;
@@ -144,13 +137,7 @@ export const profileRouter = createTRPCRouter({
         }),
       ]);
 
-      const owner = await getUser(userId);
-      if (!owner) {
-        throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: "Something went wrong",
-        });
-      }
+      const owner = (await getUser(userId))!;
 
       const lastPage = Math.ceil(total / LIMIT);
       const prev = page > 0 ? page - 1 : lastPage;
@@ -233,13 +220,7 @@ export const profileRouter = createTRPCRouter({
         }),
       ]);
 
-      const owner = await getUser(userId);
-      if (!owner) {
-        throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: "Something went wrong",
-        });
-      }
+      const owner = (await getUser(userId))!;
 
       const lastPage = Math.ceil(total / LIMIT);
       const prev = page > 0 ? page - 1 : lastPage;
