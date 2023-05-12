@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.Text annotations in model Account below
+    // Further reading:
+    // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
+    // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
+    url      = env("DATABASE_URL")
+}
+
+model FlashCard {
+    id          String       @id @default(cuid())
+    word        String
+    translation String
+    setId       String
+    set         FlashCardSet @relation(fields: [setId], references: [id], onDelete: Cascade)
+    createdAt   DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
+}
+
+enum Privacy {
+    PUBLIC
+    PRIVATE
+    UNLISTED
+}
+
+model FlashCardSet {
+    id          String      @id @default(cuid())
+    name        String
+    description String
+    thumbnail   String?
+    privacy     Privacy     @default(PUBLIC)
+    flashCards  FlashCard[]
+    categoryId  String
+    category    Category    @relation(fields: [categoryId], references: [id])
+    ownerId     String
+    history     History[]
+    createdAt   DateTime    @default(now())
+    updatedAt   DateTime    @updatedAt
+}
+
+model History {
+    id        String       @id @default(cuid())
+    userId    String
+    setId     String
+    set       FlashCardSet @relation(fields: [setId], references: [id], onDelete: Cascade)
+    createdAt DateTime     @default(now())
+    updatedAt DateTime     @updatedAt
+}
+
+model Category {
+    id        String         @id @default(cuid())
+    name      String         @unique
+    sets      FlashCardSet[]
+    createdAt DateTime       @default(now())
+    updatedAt DateTime       @updatedAt
+}
