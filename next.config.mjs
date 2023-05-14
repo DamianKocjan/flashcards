@@ -25,5 +25,14 @@ const config = {
   experimental: {
     esmExternals: false,
   },
+
+  compiler: {
+    reactRemoveProperties:
+      process.env.NODE_ENV === "production"
+        ? {
+            properties: ["^data-cy$"],
+          }
+        : {},
+  },
 };
 export default config;

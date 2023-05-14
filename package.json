@@ -9,7 +9,9 @@
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "start": "next start",
-    "seed": "ts-node --project ./prisma/tsconfig.json --transpile-only -r tsconfig-paths/register ./prisma/seed/index.ts"
+    "seed": "ts-node --project ./prisma/tsconfig.json --transpile-only -r tsconfig-paths/register ./prisma/seed/index.ts",
+    "test": "vitest",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.16.4",
@@ -29,7 +31,7 @@
     "class-variance-authority": "^0.6.0",
     "framer-motion": "^10.12.7",
     "ioredis": "^5.3.2",
-    "next": "^13.2.4",
+    "next": "^13.4.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
@@ -40,6 +42,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@testing-library/react": "^14.0.0",
     "@types/eslint": "^8.21.3",
     "@types/node": "^18.15.5",
     "@types/prettier": "^2.7.2",
@@ -47,16 +50,20 @@
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
+    "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.14",
+    "cypress": "^12.12.0",
     "eslint": "^8.36.0",
     "eslint-config-next": "^13.2.4",
+    "jsdom": "^22.0.0",
     "postcss": "^8.4.21",
     "prettier": "^2.8.6",
     "prettier-plugin-tailwindcss": "^0.2.6",
     "prisma": "^4.14.0",
     "tailwindcss": "^3.3.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "vitest": "^0.31.0"
   },
   "ct3aMetadata": {
     "initVersion": "7.12.1"

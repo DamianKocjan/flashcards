@@ -143,7 +143,10 @@ export const Header: React.FC = () => {
           <Stat stat="100+" label="Schools" />
         </div>
       </div>
-      <div className="absolute -bottom-4 right-0 hidden h-[570px] flex-1 lg:block">
+      <div
+        className="absolute -bottom-4 right-0 hidden h-[570px] flex-1 lg:block"
+        data-cy="hero-image"
+      >
         <LearningPerson />
       </div>
     </section>
