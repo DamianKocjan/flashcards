@@ -4,7 +4,6 @@ import { type GetServerSideProps, type NextPage } from "next";
 import { Categories } from "~/components/Home/Categories";
 import { Popular } from "~/components/Home/Popular";
 import { Search } from "~/components/Home/Search";
-import { Banner } from "~/components/Landing/Banner";
 
 const HomePage: NextPage = () => {
   return (
@@ -12,7 +11,6 @@ const HomePage: NextPage = () => {
       <Search />
       <Categories />
       <Popular />
-      <Banner />
       {/* TODO: Slider: https://www.figma.com/file/9sLyz5tqdtzrywFYptSW2g/Flashcard-Webiste-Project-(Community)?type=design&node-id=3-2&t=JKTO7QoKhTpUxQos-0 */}
     </div>
   );
