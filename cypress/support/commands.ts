@@ -51,50 +51,46 @@ declare global {
       signIn(): Chainable<void>;
     }
   }
-
-  interface Window {
-    Clerk: {
-      isReady: () => boolean;
-      client: {
-        signIn: {
-          create: (params: {
-            identifier: string;
-            password: string;
-          }) => Promise<{ createdSessionId: string }>;
-        };
-      };
-      setActive: (session: any) => Promise<void>;
-    };
-  }
 }
 
 Cypress.Commands.add("signOut", () => {
-  cy.log("sign out by clearing all cookies.");
-  cy.clearCookies();
+  cy.log("signing out.");
+
+  const menuButton = cy.get(".cl-userButtonTrigger");
+  expect(menuButton).to.exist;
+
+  menuButton.click().then(() => {
+    const signOutButton = cy.get(".cl-userButtonPopoverActionButton__signOut");
+    expect(signOutButton).to.exist;
+    signOutButton.click();
+  });
+
+  cy.log("signed out.");
 });
+
+type AuthData = {
+  identifier: string;
+  password: string;
+};
 
 Cypress.Commands.add("signIn", () => {
   cy.log("Signing in.");
-  cy.visit("/");
+  cy.visit("/sign-in");
 
-  cy.window()
-    .should((window) => {
-      expect(window).to.not.have.property("Clerk", undefined);
-      expect(window.Clerk.isReady()).to.eq(true);
-    })
-    .then(async (window) => {
-      cy.clearCookies({ domain: window.location.hostname });
-      const res = await window.Clerk.client.signIn.create({
-        identifier: "braden@clerk.dev",
-        password: "clerkpassword1234",
-      });
+  cy.visit("/sign-in").then(() => {
+    cy.fixture("auth.json").then((data: AuthData) => {
+      cy.get("#identifier-field").type(data.identifier);
+      cy.get(".cl-formButtonPrimary").click();
 
-      await window.Clerk.setActive({
-        session: res.createdSessionId,
-      });
+      cy.get("#password-field").type(data.password);
+      cy.get(".cl-formButtonPrimary").click();
 
-      cy.log("Finished Signing in.");
+      const profileLink = cy.get("[data-cy='link-profile']");
+      expect(profileLink).to.exist;
     });
+  });
+
+  cy.log("signed in.");
 });
 
 export {};
