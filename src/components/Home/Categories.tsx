@@ -19,13 +19,17 @@ export const Categories: React.FC = () => {
       <div className="mx-auto max-w-7xl">
         <h2 className="text-2xl font-medium text-blue-500">Categories</h2>
 
-        <div className="mt-7 flex flex-wrap items-stretch justify-evenly gap-x-8 gap-y-7">
+        <div
+          className="mt-7 flex flex-wrap items-stretch justify-evenly gap-x-8 gap-y-7"
+          data-cy="container-categories"
+        >
           {isLoading ? (
             <>
               {Array.from({ length: 6 }).map((_, i) => (
                 <div
                   key={i}
                   className="w-full max-w-xs rounded-3xl bg-blue-100 px-16 py-3 text-center text-xl font-medium text-blue-500 shadow"
+                  data-cy="skeleton-category"
                 >
                   Loading...
                 </div>
@@ -51,6 +55,7 @@ export const Categories: React.FC = () => {
                   href={`/search?category=${id}`}
                   key={id}
                   className="w-full max-w-xs rounded-3xl bg-blue-500 px-16 py-3 text-center text-xl font-medium text-slate-50 shadow"
+                  data-cy="category"
                 >
                   {name}
                 </Link>

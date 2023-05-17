@@ -34,7 +34,10 @@ export const FlashcardSet: React.FC<Props> = ({
     owner.username || `${owner.firstName ?? ""} ${owner.lastName ?? ""}`;
 
   return (
-    <div className="group relative aspect-[16/10] w-full rounded-3xl bg-slate-50 shadow transition-[background-size] lg:w-96">
+    <div
+      className="group relative aspect-[16/10] w-full rounded-3xl bg-slate-50 shadow transition-[background-size] lg:w-96"
+      data-cy="flashcardset"
+    >
       <div
         style={{
           background: `url(${thumbnail ?? ""}) 50%`,
@@ -74,7 +77,10 @@ export const FlashcardSet: React.FC<Props> = ({
 
 export const FlashcardSetSkeleton: React.FC = () => {
   return (
-    <div className="flex aspect-[16/10] w-full animate-pulse items-center justify-center rounded-3xl bg-slate-50 shadow lg:w-96">
+    <div
+      className="flex aspect-[16/10] w-full animate-pulse items-center justify-center rounded-3xl bg-slate-50 shadow lg:w-96"
+      data-cy="skeleton-flashcardset"
+    >
       <p className="select-none text-center text-xl font-semibold text-blue-400">
         Loading...
       </p>

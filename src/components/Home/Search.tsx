@@ -40,6 +40,7 @@ export const Search: React.FC = () => {
             type="search"
             placeholder="Search for what you want to learn"
             className="block w-full rounded-3xl border-0 bg-blue-100 px-4 py-3 pl-14 text-lg font-medium text-blue-500 placeholder:text-center placeholder:text-blue-400 md:text-2xl"
+            data-cy="input-search"
           />
         </div>
       </form>

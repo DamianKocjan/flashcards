@@ -24,7 +24,10 @@ export const Popular: React.FC = () => {
           Popular Flashcards
         </h2>
 
-        <div className="flex flex-wrap justify-center gap-14 py-8">
+        <div
+          className="flex flex-wrap justify-center gap-14 py-8"
+          data-cy="container-popular"
+        >
           {isLoading ? (
             <>
               {Array.from({ length: 6 }).map((_, i) => (
