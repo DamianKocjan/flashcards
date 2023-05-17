@@ -1,8 +1,9 @@
 import { SignedIn, useAuth } from "@clerk/nextjs";
+import { getAuth } from "@clerk/nextjs/server";
 import { Tab } from "@headlessui/react";
 import { Cards, Student, Target, type IconProps } from "@phosphor-icons/react";
 import { cx } from "class-variance-authority";
-import { type NextPage } from "next";
+import { type GetServerSidePropsContext, type NextPage } from "next";
 import { useRouter } from "next/router";
 
 import { ManageSet } from "~/components/FlashcardSet/ManageSet";
@@ -10,6 +11,7 @@ import { FlashcardsPanel } from "~/components/FlashcardSet/Panels/Flashcards";
 import { LearnPanel } from "~/components/FlashcardSet/Panels/Learn";
 import { PracticePanel } from "~/components/FlashcardSet/Panels/Practice";
 import MediaQuery from "~/hooks/useMediaQuery";
+import { prisma } from "~/server/db";
 import { api } from "~/utils/api";
 
 // type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
@@ -106,6 +108,87 @@ const FlashcardSetPage: NextPage = () => {
 };
 
 export default FlashcardSetPage;
+
+export async function getServerSideProps({
+  params,
+  req,
+  resolvedUrl,
+}: GetServerSidePropsContext<{ id: string }>) {
+  const id = params?.id;
+  if (!id) {
+    return {
+      notFound: true,
+    };
+  }
+  const set = await prisma.flashCardSet.findUnique({
+    where: {
+      id,
+    },
+    select: {
+      id: true,
+      ownerId: true,
+      privacy: true,
+    },
+  });
+  if (!set) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const { userId } = getAuth(req);
+
+  if (set.privacy === "PRIVATE" && set.ownerId !== userId) {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (!userId) {
+    return {
+      redirect: {
+        destination: "/sign-in?redirect_url=" + resolvedUrl,
+        permanent: false,
+      },
+    };
+  }
+
+  const WITH_IN_LAST_24_HOURS = new Date(Date.now() - 24 * 60 * 60 * 1000);
+  const lastTimeOpened = await prisma.history.findFirst({
+    where: {
+      userId,
+      setId: id,
+      createdAt: {
+        gte: WITH_IN_LAST_24_HOURS,
+      },
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  if (!lastTimeOpened) {
+    await prisma.history.create({
+      data: {
+        userId,
+        setId: id,
+      },
+    });
+  } else {
+    await prisma.history.update({
+      where: {
+        id: lastTimeOpened.id,
+      },
+      data: {
+        updatedAt: new Date(),
+      },
+    });
+  }
+
+  return {
+    props: {},
+  };
+}
 
 // export async function getServerSideProps({
 //   params,

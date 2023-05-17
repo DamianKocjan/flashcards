@@ -15,7 +15,7 @@ export const flashcardRouter = createTRPCRouter({
         userId: ctx.auth.userId,
       },
       orderBy: {
-        createdAt: "desc",
+        updatedAt: "desc",
       },
       take: 4,
       select: {

@@ -187,7 +187,7 @@ export const profileRouter = createTRPCRouter({
             userId,
           },
           orderBy: {
-            createdAt: "desc",
+            updatedAt: "desc",
           },
           take: LIMIT,
           skip: OFFSET,
