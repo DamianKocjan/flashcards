@@ -14,6 +14,7 @@ export function useFlashcardSet(originalFlashcards: FlashcardWithId[] = []) {
     schema: flashcardSchema,
   });
 
+  /** Check if flashcard with given word already exists */
   const checkIfFlashcardExists = useCallback(
     (word: string) => {
       return !!flashcards.find((flashcard) => flashcard.word === word);
@@ -44,6 +45,9 @@ export function useFlashcardSet(originalFlashcards: FlashcardWithId[] = []) {
     setFlashcards((prev) => prev.filter((_, i) => i !== index));
   }, []);
 
+  /** Start editing flashcard with given index
+   * Sets form values to flashcard values
+   */
   const handleStartEdit = useCallback(
     (index: number) => {
       const flashcard = flashcards[index];

@@ -55,6 +55,7 @@ export const getServerSideProps = async ({
       },
     };
   } else if (auth.userId !== id) {
+    // if the user is not the owner of the profile, redirect to the profile page
     return {
       redirect: {
         destination: `/profile/${id}`,

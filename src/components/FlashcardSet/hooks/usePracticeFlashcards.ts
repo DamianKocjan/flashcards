@@ -20,6 +20,7 @@ type Questions = Record<
   }
 >;
 
+/** Abstract number used for placeholder value to help with ui state */
 export const BIG_NUMBER = 999_999_999;
 
 export function usePracticeFlashcards(flashcards: Flashcard[]) {
@@ -29,6 +30,8 @@ export function usePracticeFlashcards(flashcards: Flashcard[]) {
   const [questions, setQuestions] = useState<Questions>({});
   const [index, setIndex] = useState(BIG_NUMBER);
   const [isFinished, setIsFinished] = useState(false);
+
+  // question list from question map
   const questionFlashcards = Object.entries(questions).map(
     ([id, { reversed }]) => {
       const flashcard = flashcards.find((f) => f.id === id)!;
@@ -55,11 +58,13 @@ export function usePracticeFlashcards(flashcards: Flashcard[]) {
     let i = 0;
 
     while (i < numberOfQuestions) {
+      // random index of flashcard
       const randomIndex = Math.floor(Math.random() * flashcards.length);
       const { id } = flashcards[randomIndex]!;
       const reversed = Math.random() > 0.5;
 
       const question = questions[id];
+      // if question already exists or reversed also exists skip this iteration
       if (question && question?.reversed === reversed) continue;
 
       newQuestions = Object.assign(newQuestions, {
@@ -87,6 +92,8 @@ export function usePracticeFlashcards(flashcards: Flashcard[]) {
           [flashcard.id]: {
             ...question,
             answer,
+            // if reversed is true check if answer is correct to word
+            // else check if answer is correct to translation
             isCorrect: question.reversed
               ? answer === flashcard.word.toLocaleLowerCase()
               : answer === flashcard.translation.toLocaleLowerCase(),

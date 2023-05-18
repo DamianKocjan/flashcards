@@ -16,6 +16,7 @@ export function useThumbnail(originalThumbnail: string | null = null) {
 
     setThumbnail(file);
 
+    // create preview image of thumbnail
     const reader = new FileReader();
     reader.onload = (e) => {
       e.target && setPreviewThumbnail(e.target.result);

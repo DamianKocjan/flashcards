@@ -252,6 +252,8 @@ export const flashcardRouter = createTRPCRouter({
         });
       }
 
+      // update flashcards if there is an id, update it
+      // otherwise create a new one
       await ctx.prisma.$transaction([
         ctx.prisma.flashCardSet.update({
           where: {
@@ -357,6 +359,8 @@ export const flashcardRouter = createTRPCRouter({
             contains: query,
             mode: "insensitive",
           },
+          // if user is logged in show sets that are public or owned by user
+          // otherwise show only public sets
           ...(ctx.auth.userId
             ? {
                 OR: [

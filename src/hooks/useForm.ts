@@ -6,6 +6,7 @@ type UseZodFormProps<T extends ZodSchema> = UseFormProps<TypeOf<T>> & {
   schema: T;
 };
 
+/** Wrapper of `react-hook-form` hook `useForm` with `zod` as validator */
 export function useForm<T extends ZodSchema>({
   schema,
   ...formConfig

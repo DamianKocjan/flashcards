@@ -176,6 +176,8 @@ export const getServerSideProps = async ({
   const numOfFlashcards = await prisma.flashCardSet.count({
     where: {
       ownerId: user.id,
+      // if the user is not the owner, only show public flashcard sets
+      // otherwise show all flashcard sets
       privacy: auth.userId === user.id ? undefined : "PUBLIC",
     },
   });

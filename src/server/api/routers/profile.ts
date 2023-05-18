@@ -17,6 +17,7 @@ export const profileRouter = createTRPCRouter({
       const LIMIT = 4;
       const OFFSET = (page - 1) * LIMIT;
 
+      // if the user viewing their own profile page we show all of their sets
       const privacy = ctx.auth.userId === userId ? undefined : "PUBLIC";
 
       const [sets, total] = await Promise.all([

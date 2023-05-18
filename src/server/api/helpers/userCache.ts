@@ -23,10 +23,20 @@ const KEY = "u";
 // 10 minutes
 const LIFETIME = 60_000 * 10;
 
+/** Invalidates cache value by checking creation time of it.
+ * If it's older than 10 minutes, it's considered invalid.
+ * @param timestamp Timestamp of cache value creation
+ * @returns Whether cache value is fresh
+ */
 function isFresh(timestamp: number) {
   return new Date().getTime() - timestamp < LIFETIME;
 }
 
+/** Parses json string and returns user object if it's fresh.
+ * Freshness is determined by `isFresh` function.
+ * @param json Json string to parse
+ * @returns User object if it's fresh, null otherwise
+ */
 function userFromJson(json: string) {
   try {
     const user = JSON.parse(json) as JsonUser;
@@ -44,6 +54,7 @@ function userFromJson(json: string) {
   }
 }
 
+/** Sets user in cache */
 export async function setUser(id: string, user: User) {
   const json = JSON.stringify({
     uname: user.username,
@@ -56,6 +67,11 @@ export async function setUser(id: string, user: User) {
   await redis.set(`${KEY}:${id}`, json);
 }
 
+/** Gets user from cache or Clerk if it's not in cache.
+ * And then sets it in cache.
+ * @param id User id
+ * @returns User object
+ */
 async function _getUser(id: string) {
   const user = await clerkClient.users.getUser(id);
 
@@ -74,7 +90,12 @@ async function _getUser(id: string) {
   return userObj;
 }
 
+/** Gets user from cache or Clerk if it's not in cache.
+ * @param id User id
+ * @returns User object
+ */
 export async function getUser(id: string) {
+  // get user from cache
   const userJson = await redis.get(`${KEY}:${id}`);
 
   if (!userJson) {
@@ -89,6 +110,7 @@ export async function getUser(id: string) {
 }
 
 export async function getUserList(ids: string[]) {
+  // ids which are not in cache
   const notFoundIds: string[] = [];
 
   const users: User[] = [];

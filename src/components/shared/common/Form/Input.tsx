@@ -6,6 +6,7 @@ type Props = Omit<
 > & {
   label: string;
 };
+
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
   { label, ...props },
   ref

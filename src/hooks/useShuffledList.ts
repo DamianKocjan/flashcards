@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 
+/** Shuffles given list */
 export function useShuffledList<T>(arr: T[]) {
   const shuffledList = useMemo(() => {
     const list = [...arr];

@@ -12,6 +12,7 @@ export const CategoryInput: React.FC<Props> = ({ categories }) => {
 
   const [query, setQuery] = useState("");
 
+  /** Filter categories based on query */
   const filteredCategories = useMemo(
     () =>
       query === ""

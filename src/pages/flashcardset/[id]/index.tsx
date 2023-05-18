@@ -45,6 +45,7 @@ const FlashcardSetPage: NextPage = () => {
   });
   const { userId } = useAuth();
 
+  // TODO: create loading and error ui states for this page
   if (isLoading || isError || !data) {
     return null;
   }
@@ -138,12 +139,7 @@ export async function getServerSideProps({
 
   const { userId } = getAuth(req);
 
-  if (set.privacy === "PRIVATE" && set.ownerId !== userId) {
-    return {
-      notFound: true,
-    };
-  }
-
+  // require sign in
   if (!userId) {
     return {
       redirect: {
@@ -153,8 +149,17 @@ export async function getServerSideProps({
     };
   }
 
+  // if the set is private and the user is not the owner, show 404
+  if (set.privacy === "PRIVATE" && set.ownerId !== userId) {
+    return {
+      notFound: true,
+    };
+  }
+
   const ONE_HOUR = 3600_000;
   const WITHIN_LAST_24_HOURS = new Date(Date.now() - 24 * ONE_HOUR);
+
+  // get history for this set within the last 24 hours
   const lastTimeOpened = await prisma.history.findFirst({
     where: {
       userId,
@@ -168,6 +173,7 @@ export async function getServerSideProps({
     },
   });
 
+  // update or create history
   if (!lastTimeOpened) {
     await prisma.history.create({
       data: {
