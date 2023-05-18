@@ -153,13 +153,14 @@ export async function getServerSideProps({
     };
   }
 
-  const WITH_IN_LAST_24_HOURS = new Date(Date.now() - 24 * 60 * 60 * 1000);
+  const ONE_HOUR = 3600_000;
+  const WITHIN_LAST_24_HOURS = new Date(Date.now() - 24 * ONE_HOUR);
   const lastTimeOpened = await prisma.history.findFirst({
     where: {
       userId,
       setId: id,
       createdAt: {
-        gte: WITH_IN_LAST_24_HOURS,
+        gte: WITHIN_LAST_24_HOURS,
       },
     },
     select: {
