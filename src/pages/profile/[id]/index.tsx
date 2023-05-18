@@ -45,14 +45,22 @@ const ProfilPage: NextPage<Props> = ({ numOfFlashcards, user }) => {
               </figure>
 
               <div className="ml-2 flex-1">
-                <h3 className="text-3xl font-bold text-slate-50">{username}</h3>
-                <p className="text-lg font-medium text-slate-50">
+                <h3
+                  className="text-3xl font-bold text-slate-50"
+                  data-cy="username"
+                >
+                  {username}
+                </h3>
+                <p
+                  className="text-lg font-medium text-slate-50"
+                  data-cy="num-of-flashcards"
+                >
                   {numOfFlashcards > 0 ? `${numOfFlashcards} Flashcards` : ""}
                 </p>
               </div>
 
               {userId === user.id ? (
-                <div className="flex gap-4">
+                <div className="flex gap-4" data-cy="profile-managment">
                   <Link
                     href={`/profile/${userId}/manage`}
                     className="rounded-3xl bg-slate-50 px-5 py-3 text-lg font-semibold text-blue-500"
@@ -89,6 +97,7 @@ const ProfilPage: NextPage<Props> = ({ numOfFlashcards, user }) => {
                       : "border border-slate-50 bg-blue-500 text-slate-50"
                   )
                 }
+                data-cy="tab-popular"
               >
                 Popular
               </Tab>
@@ -103,6 +112,7 @@ const ProfilPage: NextPage<Props> = ({ numOfFlashcards, user }) => {
                           : "border border-slate-50 bg-blue-500 text-slate-50"
                       )
                     }
+                    data-cy="tab-my-flashcards"
                   >
                     My flashcards
                   </Tab>
@@ -115,6 +125,7 @@ const ProfilPage: NextPage<Props> = ({ numOfFlashcards, user }) => {
                           : "border border-slate-50 bg-blue-500 text-slate-50"
                       )
                     }
+                    data-cy="tab-history"
                   >
                     History
                   </Tab>

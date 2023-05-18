@@ -24,7 +24,10 @@ export const PaginatedList: React.FC<Props> = ({
   if (!data.length) {
     return (
       <div>
-        <h3 className="text-2xl font-semibold text-slate-50">
+        <h3
+          className="text-2xl font-semibold text-slate-50"
+          data-cy="empty-list-info"
+        >
           No flashcard sets found.
         </h3>
       </div>
@@ -36,6 +39,7 @@ export const PaginatedList: React.FC<Props> = ({
         onClick={fetchPreviousPage}
         disabled={hasPreviousPage}
         className="p-1"
+        data-cy="previous-page"
       >
         <CaretLeft className="h-8 w-8 text-slate-50" aria-hidden="true" />
       </button>
@@ -46,7 +50,12 @@ export const PaginatedList: React.FC<Props> = ({
         ))}
       </div>
 
-      <button onClick={fetchNextPage} disabled={hasNextPage} className="p-1">
+      <button
+        onClick={fetchNextPage}
+        disabled={hasNextPage}
+        className="p-1"
+        data-cy="next-page"
+      >
         <CaretRight className="h-8 w-8 text-slate-50" aria-hidden="true" />
       </button>
     </div>
@@ -56,7 +65,7 @@ export const PaginatedList: React.FC<Props> = ({
 export const PaginatedListSkeleton: React.FC = () => {
   return (
     <div className="flex items-center">
-      <button disabled className="p-1">
+      <button disabled className="p-1" data-cy="previous-page">
         <CaretLeft className="h-8 w-8 text-slate-50" aria-hidden="true" />
       </button>
 
@@ -66,7 +75,7 @@ export const PaginatedListSkeleton: React.FC = () => {
         ))}
       </div>
 
-      <button disabled className="p-1">
+      <button disabled className="p-1" data-cy="next-page">
         <CaretRight className="h-8 w-8 text-slate-50" aria-hidden="true" />
       </button>
     </div>

@@ -19,7 +19,7 @@ const config = {
     defaultLocale: "en",
   },
   images: {
-    domains: ["uploadthing.com", "images.clerk.dev"],
+    domains: ["uploadthing.com", "images.clerk.dev", "www.gravatar.com"],
   },
 
   experimental: {
