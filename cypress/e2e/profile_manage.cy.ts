@@ -1,7 +1,3 @@
-type AuthData = {
-  id: string;
-};
-
 describe("profile management page spec", () => {
   it("not logged in", () => {
     cy.fixture("auth.json").then((data: AuthData) => {
