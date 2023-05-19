@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Test Public Flashcard",
+    "description": "Test Public Flashcard",
+    "category": "English",
+    "privacy": "public",
+    "flashcards": [
+      {
+        "word": "Test",
+        "translation": "Test"
+      },
+      {
+        "word": "Test 2",
+        "translation": "Test 2"
+      },
+      {
+        "word": "Test 3",
+        "translation": "Test 3"
+      },
+      {
+        "word": "Test 4",
+        "translation": "Test 4"
+      },
+      {
+        "word": "Test 5",
+        "translation": "Test 5"
+      }
+    ]
+  },
+  {
+    "name": "Test Private Flashcard",
+    "description": "Test Private Flashcard",
+    "category": "English",
+    "privacy": "private",
+    "flashcards": [
+      {
+        "word": "Test",
+        "translation": "Test"
+      },
+      {
+        "word": "Test 2",
+        "translation": "Test 2"
+      },
+      {
+        "word": "Test 3",
+        "translation": "Test 3"
+      },
+      {
+        "word": "Test 4",
+        "translation": "Test 4"
+      },
+      {
+        "word": "Test 5",
+        "translation": "Test 5"
+      }
+    ]
+  },
+  {
+    "name": "Test Unlisted Flashcard",
+    "description": "Test Unlisted Flashcard",
+    "category": "English",
+    "privacy": "unlisted",
+    "flashcards": [
+      {
+        "word": "Test",
+        "translation": "Test"
+      },
+      {
+        "word": "Test 2",
+        "translation": "Test 2"
+      },
+      {
+        "word": "Test 3",
+        "translation": "Test 3"
+      },
+      {
+        "word": "Test 4",
+        "translation": "Test 4"
+      },
+      {
+        "word": "Test 5",
+        "translation": "Test 5"
+      }
+    ]
+  }
+]

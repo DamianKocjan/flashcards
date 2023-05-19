@@ -138,12 +138,14 @@ const FlashcardSetEditPage: NextPage<Props> = ({ categories, set }) => {
                 label="Name"
                 placeholder="Name"
                 {...form.register("name", { required: true })}
+                data-cy="input-name"
               />
               <Input
                 type="text"
                 label="Description"
                 placeholder="Description"
                 {...form.register("description", { required: true })}
+                data-cy="input-description"
               />
 
               <CategoryInput categories={categories} />
@@ -170,12 +172,16 @@ const FlashcardSetEditPage: NextPage<Props> = ({ categories, set }) => {
               className="mt-auto cursor-pointer rounded-2xl bg-blue-500 py-3 text-xl font-bold uppercase text-slate-50"
               value="Update"
               form={formId}
+              data-cy="button-submit-flashcardset"
             />
           </div>
         </div>
 
         {flashcards.length ? (
-          <div className="mb-4 mt-14 grid grid-cols-4 justify-items-stretch gap-3">
+          <div
+            className="mb-4 mt-14 grid grid-cols-4 justify-items-stretch gap-3"
+            data-cy="flashcard-list"
+          >
             {flashcards.map((flashcard, i) => (
               <Flashcard
                 key={i}

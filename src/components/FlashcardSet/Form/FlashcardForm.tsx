@@ -24,17 +24,20 @@ export const FlashcardForm: React.FC<Props> = ({
         label="Word"
         placeholder="Word"
         {...register("word", { required: true })}
+        data-cy="input-word"
       />
       <Input
         type="text"
         label="Translation"
         placeholder="Your translation..."
         {...register("translation", { required: true })}
+        data-cy="input-translation"
       />
 
       <button
         type="submit"
         className="rounded-2xl border border-blue-500 bg-blue-200 py-4 text-xl font-bold uppercase text-blue-500"
+        data-cy="button-submit-flashcard"
       >
         {editingIndex !== -1 ? "Update flashcard" : "Add flashcard"}
       </button>

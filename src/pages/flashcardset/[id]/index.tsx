@@ -53,7 +53,10 @@ const FlashcardSetPage: NextPage = () => {
     <section className="px-8 py-3 sm:px-12 md:px-24">
       <div className="mx-auto max-w-7xl">
         <div className="flex items-center justify-between">
-          <h2 className="my-10 text-4xl font-bold text-blue-500">
+          <h2
+            className="my-10 text-4xl font-bold text-blue-500"
+            data-cy="flashcardset-name"
+          >
             {data?.category.name} - {data?.name}
           </h2>
 

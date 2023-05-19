@@ -28,7 +28,10 @@ export const ManageSet: React.FC<Props> = ({ id, ownerId, userId }) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="flex w-full justify-center rounded-3xl p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 md:bg-blue-500 md:p-5 md:hover:bg-blue-400">
+        <Menu.Button
+          className="flex w-full justify-center rounded-3xl p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 md:bg-blue-500 md:p-5 md:hover:bg-blue-400"
+          data-cy="flashcardset-management-menu"
+        >
           <DotsThreeVertical
             className="h-8 w-8 text-blue-500 md:h-6 md:w-6 md:text-slate-50"
             aria-hidden="true"
@@ -54,6 +57,7 @@ export const ManageSet: React.FC<Props> = ({ id, ownerId, userId }) => {
                   className={`${
                     active ? "bg-blue-500 text-white" : "text-slate-950"
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                  data-cy="flashcardset-edit-link"
                 >
                   <Pencil
                     className="mr-2 h-5 w-5"
@@ -72,6 +76,7 @@ export const ManageSet: React.FC<Props> = ({ id, ownerId, userId }) => {
                   className={`${
                     active ? "bg-blue-500 text-white" : "text-slate-950"
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                  data-cy="flashcardset-delete-button"
                 >
                   <Trash
                     className="mr-2 h-5 w-5"

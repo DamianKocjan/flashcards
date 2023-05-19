@@ -195,7 +195,7 @@ export const ThumbnailInput: React.FC<Props> = ({
         <>
           <UploadImage />
 
-          <input {...getInputProps()} />
+          <input {...getInputProps()} data-cy="input-thumbnail" />
 
           <h3 className="my-1 text-center font-semibold text-blue-500">
             Upload a image

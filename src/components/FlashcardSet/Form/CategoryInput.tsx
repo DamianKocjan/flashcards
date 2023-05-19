@@ -47,6 +47,7 @@ export const CategoryInput: React.FC<Props> = ({ categories }) => {
                   }
                   placeholder="Category"
                   onChange={(event) => setQuery(event.target.value)}
+                  data-cy="input-category"
                 />
                 <Combobox.Button className="absolute bottom-3 right-2 flex items-center justify-center pr-2">
                   <CaretDown
@@ -63,7 +64,10 @@ export const CategoryInput: React.FC<Props> = ({ categories }) => {
                 leaveTo="opacity-0"
                 afterLeave={() => setQuery("")}
               >
-                <Combobox.Options className="absolute right-0 z-10 mt-2 max-h-60 w-full origin-top-right overflow-y-auto rounded-md bg-white p-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <Combobox.Options
+                  className="absolute right-0 z-10 mt-2 max-h-60 w-full origin-top-right overflow-y-auto rounded-md bg-white p-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  data-cy="category-list"
+                >
                   {filteredCategories.length === 0 && query !== "" ? (
                     <div className="relative cursor-default select-none px-4 py-2 text-blue-500">
                       Nothing found.
@@ -80,6 +84,7 @@ export const CategoryInput: React.FC<Props> = ({ categories }) => {
                           } group relative flex w-full items-center rounded-md px-2 py-2 pl-10 text-sm`
                         }
                         value={category}
+                        data-cy="category-option"
                       >
                         {({ selected, active }) => (
                           <>

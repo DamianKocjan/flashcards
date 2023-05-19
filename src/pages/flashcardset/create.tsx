@@ -116,12 +116,14 @@ const FlashcardSetCreate: NextPage<Props> = ({ categories }) => {
                 label="Name"
                 placeholder="Name"
                 {...form.register("name", { required: true })}
+                data-cy="input-name"
               />
               <Input
                 type="text"
                 label="Description"
                 placeholder="Description"
                 {...form.register("description", { required: true })}
+                data-cy="input-description"
               />
 
               <CategoryInput categories={categories} />
@@ -148,6 +150,7 @@ const FlashcardSetCreate: NextPage<Props> = ({ categories }) => {
               className="mt-auto cursor-pointer rounded-2xl bg-blue-500 py-3 text-xl font-bold uppercase text-slate-50"
               value="Create"
               form={id}
+              data-cy="button-submit-flashcardset"
             />
           </div>
         </div>

@@ -20,7 +20,10 @@ export const PrivacyInput: React.FC = () => {
         rules={{ required: true }}
         render={({ field }) => (
           <Listbox value={field.value as string} onChange={field.onChange}>
-            <Listbox.Button className="flex items-center rounded-2xl border border-blue-500 bg-blue-200 px-4 py-3 text-center text-lg font-bold text-blue-500 md:px-8 md:py-5 md:text-xl">
+            <Listbox.Button
+              className="flex items-center rounded-2xl border border-blue-500 bg-blue-200 px-4 py-3 text-center text-lg font-bold text-blue-500 md:px-8 md:py-5 md:text-xl"
+              data-cy="input-privacy"
+            >
               {field.value}
               <CaretDown
                 className="-mr-1 ml-2 inline-block h-5 w-5"
@@ -33,7 +36,10 @@ export const PrivacyInput: React.FC = () => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white p-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Listbox.Options
+                className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white p-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                data-cy="privacy-list"
+              >
                 {PRIVACY_OPTIONS.map((option) => (
                   <Listbox.Option
                     className={({ active }) =>
@@ -43,6 +49,7 @@ export const PrivacyInput: React.FC = () => {
                     }
                     key={option.id}
                     value={option.id}
+                    data-cy={`input-privacy-${option.id.toLocaleLowerCase()}`}
                   >
                     {({ selected, active }) => (
                       <>
