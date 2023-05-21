@@ -27,6 +27,7 @@ const TabSelector: React.FC<{
         "flex flex-col items-center justify-center gap-2 font-semibold text-slate-50 md:flex-row md:text-xl",
         isSelected ? "underline" : ""
       )}
+      data-cy={`tab-${name.toLocaleLowerCase()}`}
     >
       <Icon
         className="h-10 w-10 md:h-6 md:w-6"

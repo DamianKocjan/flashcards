@@ -35,7 +35,11 @@ export const FlashcardsPanel: PanelProps = ({ flashcards }) => {
       </div>
 
       <div className="flex justify-center gap-4">
-        <button onClick={handlePrevious} className="p-1">
+        <button
+          onClick={handlePrevious}
+          className="p-1"
+          data-cy="flashcardset-previous"
+        >
           <CaretLeft
             className="h-6 w-6 text-slate-950 md:h-8 md:w-8"
             weight="bold"
@@ -43,11 +47,18 @@ export const FlashcardsPanel: PanelProps = ({ flashcards }) => {
           />
         </button>
 
-        <p className="text-xl font-medium text-slate-950 md:text-4xl">
+        <p
+          className="text-xl font-medium text-slate-950 md:text-4xl"
+          data-cy="flashcardset-pagination"
+        >
           {index + 1} / {flashcards.length}
         </p>
 
-        <button onClick={handleNext} className="p-1">
+        <button
+          onClick={handleNext}
+          className="p-1"
+          data-cy="flashcardset-next"
+        >
           <CaretRight
             className="h-6 w-6 text-slate-950 md:h-8 md:w-8"
             weight="bold"
