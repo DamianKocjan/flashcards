@@ -172,6 +172,12 @@ const FlashcardSetEditPage: NextPage<Props> = ({ categories, set }) => {
               className="mt-auto cursor-pointer rounded-2xl bg-blue-500 py-3 text-xl font-bold uppercase text-slate-50"
               value="Update"
               form={formId}
+              disabled={form.formState.isSubmitting || !form.formState.isValid}
+              title={
+                !form.formState.isValid
+                  ? "Please fill out all the fields"
+                  : undefined
+              }
               data-cy="button-submit-flashcardset"
             />
           </div>
