@@ -33,7 +33,13 @@ export const CategoryInput: React.FC<Props> = ({ categories }) => {
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
-          <Combobox value={field.value as string} onChange={field.onChange}>
+          <Combobox
+            value={field.value as string}
+            onChange={(value) => {
+              // @ts-expect-error value is not a string
+              field.onChange(value.id);
+            }}
+          >
             <div className="relative mt-1">
               <div className="relative w-full cursor-default overflow-hidden text-left sm:text-sm">
                 <Combobox.Label className="block text-sm font-bold leading-6 text-blue-500">
