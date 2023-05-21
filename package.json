@@ -1,5 +1,5 @@
 {
-  "name": "flashcards",
+  "name": "flashcardz",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,7 +11,8 @@
     "start": "next start",
     "seed": "ts-node --project ./prisma/tsconfig.json --transpile-only -r tsconfig-paths/register ./prisma/seed/index.ts",
     "test": "vitest",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.16.4",

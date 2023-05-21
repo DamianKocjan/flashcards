@@ -1,28 +1,71 @@
-# Create T3 App
+<!-- ![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png) -->
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+# Flashcardz
 
-## What's next? How do I make an app with this?
+Flashcardz is educational platform to help with learning words and definitions in other languages.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## Tech Stack
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
-
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
+- [NextJS](https://nextjs.org/)
+- [Typescript](https://typescriptlang.org)
 - [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+- [Trpc](https://trpc.io)
+- [Clerk Auth](https://clerk.dev)
+- [Redis Upstash](https://upstash.com)
 
-## Learn More
+## Run Locally
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+Clone the project
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+```bash
+git clone https://github.com/DamianKocjan/flashcardz
+```
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+Go to the project directory
 
-## How do I deploy this?
+```bash
+cd flashcardz
+```
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+Install dependencies
+
+```bash
+npm install
+```
+
+Set environment variables
+
+- copy contents of `.env-example` to `.env`
+- fill variables
+
+Start the server
+
+```bash
+npm run dev
+```
+
+## Testing
+
+- Create testing account in development enviroment on Clerk's dashboard. With data which you used to create user update `auth.json` file in `cypress/fixtures/`.
+- Update `.env` file.
+- Run `npm run seed`.
+
+### Running integration tests
+
+```bash
+npm run test
+```
+
+### Running end-to-end (e2e) tests
+
+```bash
+npm run cypress:run
+```
+
+## Authors
+
+- [Damian Kocjan](https://www.github.com/DamianKocjan)
+
+## License
+
+[MIT](https://github.com/DamianKocjan/flashcardz/blob/main/LICENSE)

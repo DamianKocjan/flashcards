@@ -11,7 +11,7 @@ export const Nav: React.FC = () => {
       <div className="mx-auto flex w-full max-w-7xl items-center">
         <h1 className="text-2xl font-bold drop-shadow md:text-3xl">
           <Link href={isSignedIn ? "/home" : "/"} data-cy="link-home">
-            Flashcards
+            Flashcardz
           </Link>
         </h1>
         <div className="flex-1" />

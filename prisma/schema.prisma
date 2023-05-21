@@ -17,13 +17,20 @@ datasource db {
 }
 
 model FlashCard {
-    id          String       @id @default(cuid())
+    id          String @id @default(cuid())
     word        String
     translation String
-    setId       String
-    set         FlashCardSet @relation(fields: [setId], references: [id], onDelete: Cascade)
-    createdAt   DateTime     @default(now())
-    updatedAt   DateTime     @updatedAt
+
+    // Relations
+    setId String
+    set   FlashCardSet @relation(fields: [setId], references: [id], onDelete: Cascade)
+
+    // Timestamps
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    // Attributes
+    @@map("flashcards")
 }
 
 enum Privacy {
@@ -33,33 +40,56 @@ enum Privacy {
 }
 
 model FlashCardSet {
-    id          String      @id @default(cuid())
+    id          String  @id @default(cuid())
     name        String
     description String
     thumbnail   String?
-    privacy     Privacy     @default(PUBLIC)
-    flashCards  FlashCard[]
-    categoryId  String
-    category    Category    @relation(fields: [categoryId], references: [id])
-    ownerId     String
-    history     History[]
-    createdAt   DateTime    @default(now())
-    updatedAt   DateTime    @updatedAt
+
+    // Relations
+    privacy    Privacy     @default(PUBLIC)
+    flashCards FlashCard[]
+    categoryId String
+    category   Category    @relation(fields: [categoryId], references: [id])
+    ownerId    String
+    history    History[]
+
+    // Timestamps
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    // Attributes
+    @@index([ownerId])
+    @@map("flashcard_sets")
 }
 
 model History {
-    id        String       @id @default(cuid())
-    userId    String
-    setId     String
-    set       FlashCardSet @relation(fields: [setId], references: [id], onDelete: Cascade)
-    createdAt DateTime     @default(now())
-    updatedAt DateTime     @updatedAt
+    id String @id @default(cuid())
+
+    // Relations
+    userId String
+    setId  String
+    set    FlashCardSet @relation(fields: [setId], references: [id], onDelete: Cascade)
+
+    // Timestamps
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    // Attributes
+    @@index([userId])
+    @@map("histories")
 }
 
 model Category {
-    id        String         @id @default(cuid())
-    name      String         @unique
-    sets      FlashCardSet[]
-    createdAt DateTime       @default(now())
-    updatedAt DateTime       @updatedAt
+    id   String @id @default(cuid())
+    name String @unique
+
+    // Relations
+    sets FlashCardSet[]
+
+    // Timestamps
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    // Attributes
+    @@map("categories")
 }
