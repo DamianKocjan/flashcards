@@ -10,7 +10,7 @@ import { createInnerTRPCContext } from "../trpc";
 
 test("get history", async () => {
   const ctx = createInnerTRPCContext({
-    // @ts-expect-error
+    // @ts-expect-error TBD
     auth: {
       userId: "test",
     },
