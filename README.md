@@ -2,7 +2,7 @@
 
 # Flashcardz
 
-Flashcardz is educational platform to help with learning words and definitions in other languages.
+Flashcardz is an educational platform to help with learning words and definitions in other languages.
 
 ## Tech Stack
 
@@ -65,6 +65,7 @@ npm run cypress:run
 ## Authors
 
 - [Damian Kocjan](https://www.github.com/DamianKocjan)
+- [Kacper Gumieniak](https://www.github.com/Foorty7even)
 
 ## License
 
