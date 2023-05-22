@@ -16,11 +16,11 @@ export const Footer: React.FC = () => {
             Copyright &copy;{new Date().getFullYear()} Flashcardz,
             <br />
             Designed by{" "}
-            <a href="https://github.com/Foorty7even" target="_blank">
+            <a href="https://www.github.com/Foorty7even" target="_blank">
               Kacper Gumieniak
             </a>
             , Developed by{" "}
-            <a href="https://github.com/DamianKocjan" target="_blank">
+            <a href="https://www.github.com/DamianKocjan" target="_blank">
               Damian Kocjan
             </a>
           </p>
