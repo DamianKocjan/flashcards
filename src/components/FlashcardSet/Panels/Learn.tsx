@@ -50,7 +50,7 @@ export const LearnPanel: PanelProps = ({ flashcards }) => {
               stiffness: 260,
               damping: 20,
             }}
-            className="select-none text-4xl font-bold text-blue-400 md:text-8xl"
+            className="select-none text-center text-4xl font-bold text-blue-400 md:text-8xl"
             data-cy="flashcardset-word"
           >
             {isFlipped ? flashcard.translation : flashcard.word}
