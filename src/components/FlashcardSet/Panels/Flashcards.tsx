@@ -24,11 +24,11 @@ export const FlashcardsPanel: PanelProps = ({ flashcards }) => {
     <Tab.Panel unmount={false}>
       <div className="my-10 mb-5 flex flex-col rounded-3xl bg-blue-200 md:mb-10">
         <div className="flex h-72 flex-col items-center justify-center md:h-96">
-          <p className="text-4xl font-bold text-blue-500 md:text-8xl">
+          <p className="text-center text-4xl font-bold text-blue-500 md:text-8xl">
             {flashcard.word}
           </p>
 
-          <p className="mt-2 text-xl font-bold text-blue-400 md:text-5xl">
+          <p className="mt-2 text-center text-xl font-bold text-blue-400 md:text-5xl">
             {flashcard.translation}
           </p>
         </div>
