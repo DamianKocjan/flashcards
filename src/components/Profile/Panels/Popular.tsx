@@ -1,21 +1,21 @@
 import { Tab } from "@headlessui/react";
-import { getQueryKey } from "@trpc/react-query";
+// import { getQueryKey } from "@trpc/react-query";
 import React, { useState } from "react";
 
 import { api } from "~/utils/api";
 import { Error } from "../Error";
 import { PaginatedList, PaginatedListSkeleton } from "../PaginatedList";
 import { type PanelProps } from "./types";
-import { useCancelQueryOnUnmount } from "./useCancelQueryOnUnmount";
+// import { useCancelQueryOnUnmount } from "./useCancelQueryOnUnmount";
 
 export const PopularPanel: React.FC<PanelProps> = ({ userId, isSelected }) => {
   const [page, setPage] = useState(1);
 
-  const queryKey = getQueryKey(api.profile.popular, {
-    userId,
-    page,
-  });
-  useCancelQueryOnUnmount(queryKey);
+  // const queryKey = getQueryKey(api.profile.popular, {
+  //   userId,
+  //   page,
+  // });
+  // useCancelQueryOnUnmount(queryKey);
 
   const { data, isLoading, isError, error } = api.profile.popular.useQuery(
     {
@@ -24,7 +24,7 @@ export const PopularPanel: React.FC<PanelProps> = ({ userId, isSelected }) => {
     },
     {
       refetchOnWindowFocus: false,
-      enabled: isSelected,
+      // enabled: isSelected,
     }
   );
 

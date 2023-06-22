@@ -1,12 +1,12 @@
 import { Tab } from "@headlessui/react";
-import { getQueryKey } from "@trpc/react-query";
+// import { getQueryKey } from "@trpc/react-query";
 import React, { useState } from "react";
 
 import { api } from "~/utils/api";
 import { Error } from "../Error";
 import { PaginatedList, PaginatedListSkeleton } from "../PaginatedList";
 import { type PanelProps } from "./types";
-import { useCancelQueryOnUnmount } from "./useCancelQueryOnUnmount";
+// import { useCancelQueryOnUnmount } from "./useCancelQueryOnUnmount";
 
 export const MyFlashcardsPanel: React.FC<PanelProps> = ({
   userId,
@@ -14,11 +14,11 @@ export const MyFlashcardsPanel: React.FC<PanelProps> = ({
 }) => {
   const [page, setPage] = useState(1);
 
-  const queryKey = getQueryKey(api.profile.flashcards, {
-    userId,
-    page,
-  });
-  useCancelQueryOnUnmount(queryKey);
+  // const queryKey = getQueryKey(api.profile.flashcards, {
+  //   userId,
+  //   page,
+  // });
+  // useCancelQueryOnUnmount(queryKey);
 
   const { data, isLoading, isError, error } = api.profile.flashcards.useQuery(
     {
@@ -27,7 +27,7 @@ export const MyFlashcardsPanel: React.FC<PanelProps> = ({
     },
     {
       refetchOnWindowFocus: false,
-      enabled: isSelected,
+      // enabled: isSelected,
     }
   );
 
